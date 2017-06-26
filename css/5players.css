@@ -1,0 +1,47 @@
+/* Display 5 players */
+
+.layout5Players{
+  /*border:1px solid #fff;*/
+  width: 100%;
+  height:70vh;
+}
+
+.top-left-player{
+  width:100%;
+  height:41%;
+  background-color: white;
+  margin-bottom: 2%;
+}
+
+.top-right-player{
+  width:100%;
+  height:32%;
+  background-color: white;
+  margin-bottom: 2%;
+}
+
+.mid-left-player{
+  width:100%;
+  height:14%;
+  background-color: blue;
+  margin-bottom: 2%;
+}
+
+.mid-right-player{
+  width:100%;
+  height:32%;
+  background-color: blue;
+  margin-bottom: 2%;
+}
+
+.bottom-left-player{
+  width:100%;
+  height:41%;
+  background-color: red;
+}
+
+.bottom-right-player{
+  width:100%;
+  height:32%;
+  background-color: red;
+}

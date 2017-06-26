@@ -1,0 +1,101 @@
+
+/* Display 6 players */
+.layout6Players{
+  /*border:1px solid #fff;*/
+  width: 100%;
+  height:70vh;
+  padding: 0 5px;
+}
+
+.top-left-player, .top-right-player{
+  width:100%;
+  height:32%;
+  border:3px solid grey;
+  border-radius: 3px;
+  margin-bottom: 2%;
+}
+
+.mid-left-player, .mid-right-player{
+  width:100%;
+  height:32%;
+  border: 3px solid grey;
+  border-radius: 3px;
+  margin-bottom: 2%;
+}
+
+.bottom-left-player, .bottom-right-player{
+  width:100%;
+  height:32%;
+  border: 3px solid grey;
+  border-radius: 3px;
+}
+
+.spinner{
+
+}
+
+.main-path-left{
+  width:30%;
+  height:40%;
+  font-family: sans-serif;
+  float: left;
+  position: relative;
+  left: 10%;
+  top: 10%;
+  color:white;
+
+}
+
+.main-path-center{
+  width:30%;
+  height:40%;
+  margin-left: auto;
+  margin-right: auto;
+  background: url("../images/tile-wb.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-bottom:5%;
+  float: left;
+}
+
+.main-path-right{
+  width:20%;
+  height:40%;
+  float: left;
+  background: url("../images/tile-grey.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: relative;
+  left: 10%;
+}
+
+.spinner-path-left{
+  clear: both;
+  width:30%;
+  height:40%;
+  margin-left:5%;
+  background: url("../images/tile-wb.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  float: left;
+}
+.spinner-path-center{
+  width:30%;
+  height:40%;
+  margin-left: auto;
+  margin-right: auto;
+  background: url("../images/tile-wb.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  float: left;
+}
+.spinner-path-right{
+  width:30%;
+  height:40%;
+  margin-left: auto;
+  margin-right: auto;
+  background: url("../images/tile-wb.png") no-repeat;
+  background-position: center;
+  background-size: contain;
+  float: left;
+}

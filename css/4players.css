@@ -1,0 +1,27 @@
+/* Display 4 players */
+
+.layout4Players{
+  /*border:1px solid #fff;*/
+  width: 100%;
+  height:70vh;
+}
+
+.top-left-player, .top-right-player{
+  width:100%;
+  height:41%;
+  background-color: white;
+  margin-bottom: 2%;
+}
+
+.mid-left-player, .mid-right-player{
+  width:100%;
+  height:14%;
+  background-color: blue;
+  margin-bottom: 2%;
+}
+
+.bottom-left-player, .bottom-right-player{
+  width:100%;
+  height:41%;
+  background-color: red;
+}
