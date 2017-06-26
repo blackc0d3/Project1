@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Domino</title>
   </head>
   <body>
@@ -18,7 +18,7 @@
           New Game
         </button>
         <button type="button" class="btn btn-exit" onclick="playGame()">
-          Exit
+          Reset settings
         </button>
         <button type="button" class="btn btn-doc" onclick="popupText()">
           Documentation
@@ -32,15 +32,36 @@
     <div class="table">
 
       <div class="left">
+        <div class="layout6Players">
+          <div class="top-left-player">
 
+          </div>
+          <div class="mid-left-player">
+
+          </div>
+          <div class="bottom-left-player">
+
+          </div>
+          </div>
+        </div>
       </div>
 
-      <div class="center">
-
+      <div class="center">    <!-- id="myDIV -->
+        <img class="hand-start" src="images/main-tile-container.png">
       </div>
 
       <div class="right">
+        <div class="layout6Players">
+          <div class="top-right-player">
 
+          </div>
+          <div class="mid-right-player">
+
+          </div>
+          <div class="bottom-right-player">
+
+          </div>
+          </div>
       </div>
 
 
@@ -49,16 +70,32 @@
     <div class="user-dominos">
 
       <div class="upper-row">
-
+        <ul>
+          <li class="position_1_1 disposal-tiles"></li>
+          <li class="position_1_2 disposal-tiles"></li>
+          <li class="position_1_3 disposal-tiles"></li>
+          <li class="position_1_4 disposal-tiles"></li>
+          <li class="position_1_5 disposal-tiles"></li>
+          <li class="position_1_6 disposal-tiles"></li>
+          <li class="position_1_7 disposal-tiles"></li>
+          <li class="position_1_8 disposal-tiles"></li>
+          <li class="position_1_9 disposal-tiles"></li>
+        </ul>
       </div>
 
-      <div class="mid-row">
-
-      </div>
       <div class="lower-row">
-
+        <ul>
+          <li class="position_2_1 disposal-tiles"></li>
+          <li class="position_2_2 disposal-tiles"></li>
+          <li class="position_2_3 disposal-tiles"></li>
+          <li class="position_2_4 disposal-tiles"></li>
+          <li class="position_2_5 disposal-tiles"></li>
+          <li class="position_2_6 disposal-tiles"></li>
+          <li class="position_2_7 disposal-tiles"></li>
+          <li class="position_2_8 disposal-tiles"></li>
+          <li class="position_2_9 disposal-tiles"></li>
+        </ul>
       </div>
-
 
     </div>
 
@@ -74,5 +111,5 @@
 
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </html>
