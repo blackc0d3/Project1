@@ -13,6 +13,7 @@
   border:3px solid grey;
   border-radius: 3px;
   margin-bottom: 2%;
+  background-color: rgba(50, 45, 45, 0.5);
 }
 
 .mid-left-player, .mid-right-player{
@@ -21,6 +22,7 @@
   border: 3px solid grey;
   border-radius: 3px;
   margin-bottom: 2%;
+  background-color: rgba(50, 45, 45, 0.5);
 }
 
 .bottom-left-player, .bottom-right-player{
@@ -28,6 +30,7 @@
   height:32%;
   border: 3px solid grey;
   border-radius: 3px;
+  background-color: rgba(50, 45, 45, 0.5);
 }
 
 .spinner{

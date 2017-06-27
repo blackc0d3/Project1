@@ -21,22 +21,57 @@ line-height: 1.5;
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 
 .menu-bar{
-  /*border:1px solid #fff;*/
   width:80%;
   height:7vh;
+  background-color: rgba(255,0,0,0.4);
 }
 .logo{
   /*border:1px solid #fff;*/
-  width:25%;
+  width:40%;
   height:7vh;
 
 }
+
+.numberPlayers{
+  font-family: sans-serif;
+  color: white;
+  position: relative;
+  left:2vw;
+  top:0.8vw;
+}
+
+#numberPlayers{
+  background: rgb(193, 194, 176);
+  position: absolute;
+  left:8vw;
+  top:1vw;
+  border: 1px solid red;
+  }
+
+  .sizeGame{
+    font-family: sans-serif;
+    color: white;
+    position: absolute;
+    left:17vw;
+    top:0.8vw;
+  }
+
+#sizeGame{
+  background: rgb(193, 194, 176);
+  position: absolute;
+  left:23vw;
+  top:1vw;
+  border: 1px solid red;
+  }
+
+
+
 .text{
-  /*border:1px solid #fff;*/
-  width:60%;
+  /*border:1px solid red;*/
+  width:48%;
   height:7vh;
   position:absolute;
-  left: 20%;
+  left: 32%;  /*80*40*/
   top: 0.5%;
 }
 
@@ -53,21 +88,21 @@ line-height: 1.5;
 
 .btn-new{
 position: absolute;
-left:30vw;
+left:18vw;
 top: 6%;
 font-size: 1vw;
 }
 
 .btn-reset{
 position: absolute;
-left:38vw;
+left:27vw;
 top: 6%;
 font-size: 1vw;
 }
 
 .btn-doc{
 position: absolute;
-left:48vw;
+left:38vw;
 top: 6%;
 font-size: 1vw;
 }
@@ -81,9 +116,9 @@ font-size: 1vw;
   height: 70vh;
 }
 .left{
-  /*border:1px solid #fff;*/
-  width: 40%;
-  height: 70vh;
+  border:1px solid #fff;
+  width: 80vw;
+  height: 27vh;
 }
 .center{
   /*border:1px solid #fff;*/
@@ -94,14 +129,22 @@ font-size: 1vw;
   top: 7%
 }
 .right{
-  /*border:1px solid #fff;*/
-  width: 32%; /* 80*40*/
-  height: 70vh;
+  border:1px solid red;
+  width: 80vw;
+  height: 27vh;
   position:absolute;
-  left: 48%; /* 80*(40+20)*/
-  top: 7%
+  left: 0;
+  top: 50vh;
 }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
+.casino-chip{
+  width:100%;
+  height:auto;
+
+  border-radius: 5px;
+  position:relative;
+  top:0;
+}
 .hand-start{
   background: url("../images/background1.jpg") no-repeat;
   background-position: center;
@@ -110,7 +153,14 @@ font-size: 1vw;
   height:auto;
   border-radius: 5px;
   position:relative;
-  top:30%;
+  top:0;
+}
+.remaining-tiles{
+  width:100%;
+  height:auto;
+  border-radius: 5px;
+  position:relative;
+  top:0;
 }
 
 .layout7Players{
@@ -130,7 +180,7 @@ font-size: 1vw;
   width: 80%;
   height: 23vh;
   padding: 1vh;
-
+  background: rgba(33, 98, 175, 0.59);
 }
 .upper-row{
   /*border:1px solid #fff;*/
@@ -146,18 +196,7 @@ font-size: 1vw;
    list-style-type: none
  }
 
-.disposal-tiles2{
-  width:10%;
-  height:9vh;
-  border-radius: 5px;
-  background-color: rgba(100,100,100,0.7);
-  float: left;
-  margin-left:1%;
-  margin-top:0.2%;
-  align-content: center;
- }
-
- .disposal-tiles{
+.disposal-tiles{
    background: url("../images/tile-wb.png") no-repeat;
    background-position: center;
    background-size:contain;
@@ -180,13 +219,47 @@ font-size: 1vw;
   position:absolute;
   left: 80%;
   top:0;
+  text-align: center;
+  color: white;
+  font-family: sans-serif;
+  background: rgba(40, 39, 43, 0.83);
 }
 
+#stats{
+  height:20%;
+  border-bottom: 2px solid white;
+  padding: 5%;
+}
+
+#score{
+  height: 80%;
+  text-align: center;
+  padding: 5%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th {
+  color: white;
+  text-align: center;
+  padding-left: 13px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 18px;
+}
+
+
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
-
-
-
 
 
 
@@ -210,5 +283,4 @@ font-size: 1vw;
 /* Standard syntax */
 @keyframes mymove {
     50% {outline: 5px solid grey;}
-
 */

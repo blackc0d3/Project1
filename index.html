@@ -11,6 +11,26 @@
 
     <div class="menu-bar">
       <div class="logo">
+        <span class="numberPlayers">Players</span>
+        <form>
+          <select id="numberPlayers">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+        </form>
+
+      <span class="sizeGame">Hands</span>
+      <form>
+        <select id="sizeGame">
+          <option value="12">12 (full)</option>
+          <option value="6">6 (half)</option>
+          <option value="2">2 (mini)</option>
+        </select>
+      </form>
+
 
       </div>
 
@@ -101,6 +121,8 @@
 
       <div class="center">    <!-- id="myDIV -->
         <img class="hand-start" src="images/main-tile-container.png">
+        <img class="casino-chip" src="images/chip.png">
+        <img class="remaining-tiles" src="images/tile-wb.png">
       </div>
 
       <div class="right">
@@ -204,8 +226,29 @@
     </div>
 
     <div class="score-panel">
+      <div id="stats">
 
-    </div>
+          <h2>C A S I N O stats</h2>
+          <p>Current hand: <span id="current_hand">0</span></p>
+          <p>Hands to be played: <span id="hands_to_be_played">0</span></p>
+      </div>
+
+      <div id="score">
+          <h2>Current positions</h2>
+          <br>
+          <table id="headers">
+            <tr>
+              <th>Player</th>
+              <th>Hands</th>
+              <th>Points</th>
+            </tr>
+          </table>
+          <table id="scoresTable">
+            <tr><td>There are no items...</td></tr>
+          </table>
+        </div>
+      </div>
+
 
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
