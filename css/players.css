@@ -1,59 +1,69 @@
 
-/* Display 6 players */
-.layout6Players{
-  /*border:1px solid #fff;*/
+/* Display 8 players */
+.layoutPlayers{
   width: 100%;
-  height:70vh;
+  height:27vh;
   padding: 0 5px;
 }
 
-.top-left-player, .top-right-player{
-  width:100%;
-  height:32%;
-  border:3px solid grey;
+.player-left{
+  width: 25%;
+  height:27vh;
+  border:1px solid grey;
   border-radius: 3px;
   margin-bottom: 2%;
   background-color: rgba(50, 45, 45, 0.5);
+  float: left;
+  position: relative;
 }
 
-.mid-left-player, .mid-right-player{
-  width:100%;
-  height:32%;
-  border: 3px solid grey;
+.player-mid-left{
+  width: 25%;
+  height:27vh;
+  border:1px solid grey;
   border-radius: 3px;
   margin-bottom: 2%;
   background-color: rgba(50, 45, 45, 0.5);
+  float: left;
+  position: relative;
 }
-
-.bottom-left-player, .bottom-right-player{
-  width:100%;
-  height:32%;
-  border: 3px solid grey;
+.player-mid-right{
+  width: 25%;
+  height:27vh;
+  border:1px solid grey;
   border-radius: 3px;
+  margin-bottom: 2%;
   background-color: rgba(50, 45, 45, 0.5);
+  float: left;
+  position: relative;
 }
-
-.spinner{
-
+.player-right{
+  width: 25%;
+  height:27vh;
+  border:1px solid grey;
+  border-radius: 3px;
+  margin-bottom: 2%;
+  background-color: rgba(50, 45, 45, 0.5);
+  float: left;
+  position: relative;
 }
 
 .main-path-left{
   width:30%;
   height:40%;
   font-family: sans-serif;
-  text-align: center;
+  text-align: left;
   float: left;
   position: relative;
-
-  top: 10%;
+  left:5%;
+  top: 12%;
   color:white;
   font-size: 1.2vw;
-
 }
 
 .main-path-center{
   width:30%;
-  height:40%;
+  height:45%;
   margin-left: auto;
   margin-right: auto;
   background: url("../images/tile-wb.png") no-repeat;
@@ -63,32 +73,35 @@
   float: left;
   position: relative;
   left: 5%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .main-path-right{
-  width:20%;
+  width:30%;
   height:40%;
   float: left;
   background: url("../images/tile-grey.png") no-repeat;
   background-position: center;
   background-size: contain;
   position: relative;
-  left: 10%;
+  left: 5%;
 }
 
 .spinner-path-left{
   clear: both;
+  float: left;
   width:30%;
-  height:40%;
+  height:45%;
   margin-left:5%;
   background: url("../images/tile-wb.png") no-repeat;
   background-position: center;
   background-size: contain;
-  float: left;
 }
+
 .spinner-path-center{
   width:30%;
-  height:40%;
+  height:45%;
   margin-left: auto;
   margin-right: auto;
   background: url("../images/tile-wb.png") no-repeat;
@@ -96,9 +109,10 @@
   background-size: contain;
   float: left;
 }
+
 .spinner-path-right{
   width:30%;
-  height:40%;
+  height:45%;
   margin-left: auto;
   margin-right: auto;
   background: url("../images/tile-wb.png") no-repeat;

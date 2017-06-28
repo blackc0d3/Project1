@@ -64,8 +64,6 @@ line-height: 1.5;
   border: 1px solid red;
   }
 
-
-
 .text{
   /*border:1px solid red;*/
   width:48%;
@@ -115,62 +113,45 @@ font-size: 1vw;
   width: 80%;
   height: 70vh;
 }
-.left{
-  border:1px solid #fff;
+.top{
+  /*border:1px solid #fff;*/
   width: 80vw;
   height: 27vh;
 }
 .center{
-  /*border:1px solid #fff;*/
-  width: 16%; /* 80*20*/
-  height: 70vh;
+  /*border:1px solid blue;*/
+  width: 80vw;
+  height: 16vh;
   position:absolute;
-  left: 32%; /* 80*40*/
-  top: 7%
+  top: 34vh;
+  text-align: center;
 }
-.right{
-  border:1px solid red;
+.bottom{
+  /*border:1px solid red;*/
   width: 80vw;
   height: 27vh;
   position:absolute;
-  left: 0;
-  top: 50vh;
+  top: 50vh; /*7+27+16*/
 }
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 .casino-chip{
-  width:100%;
-  height:auto;
-
+  width:auto;
+  height:15vh;
   border-radius: 5px;
-  position:relative;
-  top:0;
+  margin-left: 1vw;
+  margin-right: 1vw;
+
 }
 .hand-start{
   background: url("../images/background1.jpg") no-repeat;
   background-position: center;
   background-size: cover;
-  width:100%;
-  height:auto;
+  width:auto;
+  height:16vh;
   border-radius: 5px;
-  position:relative;
-  top:0;
+  margin-left: 2vw;
+  margin-right: 2vw;
 }
-.remaining-tiles{
-  width:100%;
-  height:auto;
-  border-radius: 5px;
-  position:relative;
-  top:0;
-}
-
-.layout7Players{
-
-}
-.layout8Players{
-
-}
-
-
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
@@ -197,7 +178,7 @@ font-size: 1vw;
  }
 
 .disposal-tiles{
-   background: url("../images/tile-wb.png") no-repeat;
+   background: url("../images/tile-wb_horiz.png") no-repeat;
    background-position: center;
    background-size:contain;
    width:10%;
@@ -232,9 +213,19 @@ font-size: 1vw;
 }
 
 #score{
-  height: 80%;
+  height: 60%;
   text-align: center;
   padding: 5%;
+}
+
+.extra-tiles{
+  height:8vh;
+}
+.remaining-tiles{
+
+  height:12vh;
+  border-radius: 5px;
+  position: relative;
 }
 
 table {
@@ -254,7 +245,13 @@ th {
 td {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 18px;
+    padding: 0 18px;
+}
+
+.th2 {
+  text-align: right;
+  position: relative;
+  left: 9px;
 }
 
 
