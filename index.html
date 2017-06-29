@@ -38,20 +38,8 @@
 
       <div class="text">
         <input id="newGame" class="btn btn-new hidden" type="button" value="New Game"/>
-        <input id="resetGame" class="btn btn-reset hidden" type="button" value="Reset settings" onclick="playGame()"/>
-        <input id="documentation" class="btn btn-doc hidden" type="button" value="Documentation" onclick="popupText()"/>
-        <!--<button type="button" class="btn btn-new" onclick="playGame()">
-        New Game
-        </button>
-        <button type="button" class="btn btn-reset" onclick="playGame()">
-          Reset settings
-        </button>
-        <button type="button" class="btn btn-doc" onclick="popupText()">
-          Documentation
-        </button>-->
-
-
-
+        <input id="resetGame" class="btn btn-reset hidden" type="button" value="Reset settings"/>
+        <input id="documentation" class="btn btn-doc hidden" type="button" value="Documentation"/>
       </div>
     </div>
 
@@ -59,59 +47,10 @@
 
       <div class="top">
         <div id="top" class="layoutPlayers">
-
-          <div class="player-left spinner table-top">
-            <!--
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            <div class="main-path-left">
-              <span class="player-name">Player 1</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-mid-left spinner table-top">
-            <!--
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            <div class="main-path-left">
-              <span class="player-name">Player 2</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-mid-right spinner table-top">
-            <!--
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            <div class="main-path-left">
-              <span class="player-name">Player 3</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-right spinner table-top">
-            <!--
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            <div class="main-path-left">
-              <span class="player-name">Player 4</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            -->
-          </div>
-
+          <div class="player-left table-top"></div>
+          <div class="player-mid-left table-top"></div>
+          <div class="player-mid-right table-top"></div>
+          <div class="player-right table-top"></div>
         </div>
       </div>
 
@@ -127,100 +66,132 @@
 
       <div class="bottom">
         <div id="bottom" class="layoutPlayers">
-
-          <div class="player-left spinner table-bottom">
-            <!--
-            <div class="main-path-left">
-              <span class="player-name">Player 5</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-mid-left spinner table-bottom">
-            <!--
-            <div class="main-path-left">
-              <span class="player-name">Player 6</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-mid-right spinner table-bottom">
-            <!--
-            <div class="main-path-left">
-              <span class="player-name">Player 7</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            -->
-          </div>
-
-          <div class="player-right spinner table-bottom">
-            <!--
-            <div class="main-path-left">
-              <span class="player-name">Player 8</span>
-            </div>
-            <div class="main-path-center"></div>
-            <div class="main-path-right"></div>
-            <div class="spinner-path-left"></div>
-            <div class="spinner-path-center"></div>
-            <div class="spinner-path-right"></div>
-            -->
-          </div>
-
+          <div class="player-left table-bottom"></div>
+          <div class="player-mid-left table-bottom"></div>
+          <div class="player-mid-right table-bottom"></div>
+          <div class="player-right table-bottom"></div>
         </div>
       </div>
-
-
     </div>
 
     <div class="user-dominos">
-
-      <div class="upper-row">
-        <ul>
-          <li class="position_1_1 disposal-tiles"></li>
-          <li class="position_1_2 disposal-tiles"></li>
-          <li class="position_1_3 disposal-tiles"></li>
-          <li class="position_1_4 disposal-tiles"></li>
-          <li class="position_1_5 disposal-tiles"></li>
-          <li class="position_1_6 disposal-tiles"></li>
-          <li class="position_1_7 disposal-tiles"></li>
-          <li class="position_1_8 disposal-tiles"></li>
-          <li class="position_1_9 disposal-tiles"></li>
-        </ul>
+      <div class="upper-row" id="upper-row-users">
+          <!--<div class="disposal-tiles" data-value="4">
+            <div class="position_1_1">
+              <div id="position_1_1_x"></div>
+              <div id="position_1_1_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_2">
+              <div id="position_1_2_x"></div>
+              <div id="position_1_2_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_3">
+              <div id="position_1_3_x"></div>
+              <div id="position_1_3_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_4">
+              <div id="position_1_4_x"></div>
+              <div id="position_1_4_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_5">
+              <div id="position_1_5_x"></div>
+              <div id="position_1_5_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_6">
+              <div id="position_1_6_x"></div>
+              <div id="position_1_6_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_7">
+              <div id="position_1_7_x"></div>
+              <div id="position_1_7_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_8">
+              <div id="position_1_8_x"></div>
+              <div id="position_1_8_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_1_9">
+              <div id="position_1_9_x"></div>
+              <div id="position_1_9_y"></div>
+            </div>
+          </div>-->
       </div>
 
-      <div class="lower-row">
-        <ul>
-          <li class="position_2_1 disposal-tiles"></li>
-          <li class="position_2_2 disposal-tiles"></li>
-          <li class="position_2_3 disposal-tiles"></li>
-          <li class="position_2_4 disposal-tiles"></li>
-          <li class="position_2_5 disposal-tiles"></li>
-          <li class="position_2_6 disposal-tiles"></li>
-          <li class="position_2_7 disposal-tiles"></li>
-          <li class="position_2_8 disposal-tiles"></li>
-          <li class="position_2_9 disposal-tiles"></li>
-        </ul>
-      </div>
-
+      <div class="lower-row" id="lower-row-users">
+          <!--<div class="disposal-tiles">
+            <div class="position_2_1">
+              <div id="position_2_1_x"></div>
+              <div id="position_2_1_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_2">
+              <div id="position_2_2_x"></div>
+              <div id="position_2_2_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_3">
+              <div id="position_2_3_x"></div>
+              <div id="position_2_3_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_4">
+              <div id="position_2_4_x"></div>
+              <div id="position_2_4_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_5">
+              <div id="position_2_5_x"></div>
+              <div id="position_2_5_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_6">
+              <div id="position_2_6_x"></div>
+              <div id="position_2_6_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_7">
+              <div id="position_2_7_x"></div>
+              <div id="position_2_7_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_8">
+              <div id="position_2_8_x"></div>
+              <div id="position_2_8_y"></div>
+            </div>
+          </div>
+          <div class="disposal-tiles">
+            <div class="position_2_9">
+              <div id="position_2_9_x"></div>
+              <div id="position_2_9_y"></div>
+            </div>
+          </div>
+      </div>-->
     </div>
 
     <div class="score-panel">
       <div id="stats">
-
           <h2>C A S I N O stats</h2>
           <p>Current hand: <span id="current_hand">0</span></p>
           <p>Hands to be played: <span id="hands_to_be_played">0</span></p>
@@ -243,10 +214,11 @@
         <div>
           <span class="extra-tile">Extra tiles</span>
           <br>
-          <img class="remaining-tiles" src="images/tile-wb_horiz.png">
+          <div id="remainingTiles">
+            <img id="extraTiles" class="remaining-tiles" src="images/tile-wb_horiz.png">
+          </div>
         </div>
       </div>
-
 
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

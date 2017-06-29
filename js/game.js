@@ -1,4 +1,5 @@
 var defaultTiles = 10; // default number of tiles for each player
+var defaultMaxTile = 12; // maximum double number of the domino set
 
 function DominosGame(_selectedPlayers, _numberHands){
   this.selectedPlayers = _selectedPlayers;
@@ -6,9 +7,12 @@ function DominosGame(_selectedPlayers, _numberHands){
   this._generateBoard();
   this.tiles = this._generateTiles();
   this.deckOfTiles = this._shuffleTiles();
-  this.playersData = this._assignTiles(defaultTiles, this.selectedPlayers);
+  this.assignedTiles = this._assignTiles(defaultTiles, this.selectedPlayers);  // output of _assignTiles is an array of 2 elements
+  this.extraTiles = this.assignedTiles[0];   // array if the remaining tiles after assigning the other ones to each player
+  this.playersData = this.assignedTiles[1];  // assigned to each player as an object (including name, points, wonHands and the array of tiles)
   this._loadTable('scoresTable', ['name', 'wonHands', 'points'], this.playersData);
-
+  this._usersTilesDisplay();
+  this._getOneTile();
 }
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,27 +22,29 @@ DominosGame.prototype._generateBoard = function() {
   for (var i = 1; i <= this.selectedPlayers; i++){
     var html = '';
     var html2 = '';
-    html += '<div class="spinner-path-left"></div>';
-    html += '<div class="spinner-path-center"></div>';
-    html += '<div class="spinner-path-right"></div>';
+    html += '<div class="spinner-path-left spinner" disabled="true"></div>';
+    html += '<div class="spinner-path-center spinner" disabled="true"></div>';
+    html += '<div class="spinner-path-right spinner" disabled="true"></div>';
     html += '<div class="main-path-left">';
-    html += '<span class="player-name-' + i + '">Player ' + i + '</span>';
+    html += '<input type="text" placeholder="Player ' + i +'" />';
+    //html += '<span class="player-name-' + i + '">Player ' + i + '</span>';
     html += '<br>';
     html += '<span class="player-tiles>">Tiles:</span>';
     html += '</div>';
-    html += '<div class="main-path-center"></div>';
+    html += '<div class="main-path-center" disabled="false"></div>';
     html += '<div class="main-path-right"></div>';
 
     html2 += '<div class="main-path-left">';
-    html2 += '<span class="player-name-' + i + '">Player ' + i + '</span>';
+    html2 += '<input type="text" placeholder="Player ' + i +'" />';
+    //html2 += '<span class="player-name-' + i + '">Player ' + i + '</span>';
     html2 += '<br>';
     html2 += '<span class="player-tiles>">Tiles:</span>';
     html2 += '</div>';
-    html2 += '<div class="main-path-center"></div>';
+    html2 += '<div class="main-path-center" disabled="false"></div>';
     html2 += '<div class="main-path-right"></div>';
-    html2 += '<div class="spinner-path-left"></div>';
-    html2 += '<div class="spinner-path-center"></div>';
-    html2 += '<div class="spinner-path-right"></div>';
+    html2 += '<div class="spinner-path-left spinner" disabled="true"></div>';
+    html2 += '<div class="spinner-path-center spinner" disabled="true"></div>';
+    html2 += '<div class="spinner-path-right spinner" disabled="true"></div>';
 
     if (i === 1) {
       $('#top > .player-left').html(html);
@@ -68,9 +74,9 @@ DominosGame.prototype._generateBoard = function() {
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 DominosGame.prototype._generateTiles = function() {
   var tiles = [];
-  for (var x = 0; x <= this.numberHands; x++){
+  for (var x = 0; x <= defaultMaxTile; x++){
     for (var y = 0; y <= x; y++){
-      tiles.push('('+ x + ',' + y + ')');
+      tiles.push([x,y]);
     }
   }
   return tiles;
@@ -101,12 +107,75 @@ DominosGame.prototype._assignTiles = function (defaultTiles, selectedPlayers){
   extraTiles = this.deckOfTiles;
   var playerTiles=[];
   var playersData = [];
-  console.log(selectedPlayers);
   for (var i=1; i<= selectedPlayers; i++){
     playerTiles = extraTiles.splice(0, defaultTiles);
-    playersData.push({ name:'player '+ i, wonHands: '0', points: '0' });
+    playersData.push({ name:'player '+ i, wonHands: '0', points: '0', tiles:[playerTiles]});
   }
-  return playersData;
+  return [extraTiles, playersData];
+};
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//  Displaying users tiles
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+DominosGame.prototype._usersTilesDisplay = function() {
+
+  // Assign user's tiles to some of this empty divs
+  var htmlTileNumber = '';
+  var htmlTileNumber2 = '';
+  var indexUserTileX = NaN;
+  var indexUserTileY = NaN;
+  for( var k = 0; k < 5; k++){
+    indexUserTileX = parseInt(this.playersData[0].tiles[0][k]);
+    indexUserTileY = parseInt(this.playersData[1].tiles[0][k]);
+    htmlTileNumber += '<div class="tile users-display" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><img class="tile-left" src="images/'+ indexUserTileX +'-wb.png"><img class="tile-right" src="images/'+ indexUserTileY +'-wb.png"></div>';
+    $('#upper-row-users').html(htmlTileNumber);
+  }
+  for (var t = 5; t < 9; t++){
+    $('#upper-row-users').append('<div class="empty-tile users-display"></div>');
+  }
+
+  for( var u = 5; u < 10; u++){
+    indexUserTileX = parseInt(this.playersData[0].tiles[0][u]);
+    indexUserTileY = parseInt(this.playersData[1].tiles[0][u]);
+    htmlTileNumber2 += '<div class="users-display empty-tile tile" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><img class="tile-left" src="images/'+ indexUserTileX +'-wb.png"><img class="tile-right" src="images/'+ indexUserTileY +'-wb.png"></div>';
+    $('#lower-row-users').html(htmlTileNumber2);
+  }
+  for (var e = 5; e < 9; e++){
+    $('#lower-row-users').append('<div class="users-display empty-tile"></div>');
+  }
+
+};
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+//  Remaining extra tiles
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+DominosGame.prototype._getOneTile = function (){
+
+var emptyCell = '';
+var tileToMove = '';
+var tileToMoveEdgeX = ''; // x
+var tileToMoveEdgeY = ''; // y
+
+console.log(tileToMove);
+console.log(tileToMoveEdgeX);
+console.log(tileToMoveEdgeY);
+that = this;
+if (this.extraTiles.length !== 0){
+  $('#remainingTiles').dblclick(function() {
+    tileToMove = that.extraTiles.pop();
+    tileToMoveEdgeX = tileToMove[0]; // x
+    tileToMoveEdgeY = tileToMove[1]; // y
+    console.log(tileToMove);
+    console.log(tileToMoveEdgeX);
+    console.log(tileToMoveEdgeY);
+  emptyCell = $(".empty-tile:not(:has(*))")[0];  // check the names used at the end
+  $(emptyCell).html("<img class='tile-left' src='images/" + tileToMoveEdgeX + "-wb.png'><img class='tile-right' src='images/" + tileToMoveEdgeY + "-wb.png'>");
+}.bind(this));
+}
+else {
+  $("#remainingTiles").prop('disabled', true);
+}
 };
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -115,9 +184,6 @@ DominosGame.prototype._assignTiles = function (defaultTiles, selectedPlayers){
 
 // ********* Creation *********
 DominosGame.prototype._loadTable = function (tableId, fields, data) {
-  console.log("tableId",tableId);
-  console.log("fields",fields);
-  console.log("data",data);
     var rows = '';
     $.each(data, function(index, item) {
         var row = '<tr>';
@@ -131,7 +197,6 @@ DominosGame.prototype._loadTable = function (tableId, fields, data) {
  // ********* Updating *********
 
 
-
 // //****************************************************************** // //
 // //****************************************************************** // //
 // //**************   HTML/CSS Interactions   ************************* // //
@@ -142,20 +207,31 @@ DominosGame.prototype._loadTable = function (tableId, fields, data) {
 //  Generation of the layout according to the number of players
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+var dominosGame = null;   // needs to be moved inside
 $(document).ready(function(){
 
-  var dominosGame = null;
-  document.getElementById("newGame").addEventListener("click", function(){
+
+  $("#newGame").on("click", function(){
     var selectedPlayers = parseInt($("#numberPlayers").val());
     var numberHands = parseInt($("#sizeGame").val());
+    $("#numberPlayers").prop('disabled', true);
+    $("#sizeGame").prop('disabled', true);
+    $("#newGame").prop('disabled', true);
     dominosGame = new DominosGame(selectedPlayers, numberHands);
-
-
-
-
-    // dominosGame = null;
-    // remove listener
-    // disable button
     });
+
+  $("#resetGame").on("click", function(){
+    $('.table-top').children().remove();
+    $('.table-bottom').children().remove();
+    $('#scoresTable tr').remove();
+    $('#scoresTable').html('<tr><td>There are no players...</td></tr>');
+    $("#numberPlayers").prop('disabled', false);
+    $("#sizeGame").prop('disabled', false);
+    $("#newGame").prop('disabled', false);
+    $('#numberPlayers').val('2');
+    $('#sizeGame').val('12');
+    $('.tile').remove();
+    $('.empty-tile').remove();
+    $('#remainingTiles').unbind("dblclick");
   });
+});
