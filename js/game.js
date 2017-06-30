@@ -8,7 +8,7 @@ function DominosGame(_selectedPlayers, _numberHands){
   this.tiles = this._generateTiles();
   this.deckOfTiles = this._shuffleTiles();
   this.assignedTiles = this._assignTiles(defaultTiles, this.selectedPlayers);  // output of _assignTiles is an array of 2 elements
-  this.extraTiles = this.assignedTiles[0];   // array if the remaining tiles after assigning the other ones to each player
+  this.extraTiles = this.assignedTiles[0];   // array of the remaining tiles after assigning the other ones to each player
   this.playersData = this.assignedTiles[1];  // assigned to each player as an object (including name, points, wonHands and the array of tiles)
   this._loadTable('scoresTable', ['name', 'wonHands', 'points'], this.playersData);
   this._usersTilesDisplay();
@@ -26,21 +26,21 @@ DominosGame.prototype._generateBoard = function() {
     html += '<div class="spinner-path-center spinner" disabled="true"></div>';
     html += '<div class="spinner-path-right spinner" disabled="true"></div>';
     html += '<div class="main-path-left">';
-    html += '<input type="text" placeholder="Player ' + i +'" />';
+    html += '<input type="text" id="placeholder' + i +'" placeholder="Player ' + i +'" />';
     //html += '<span class="player-name-' + i + '">Player ' + i + '</span>';
     html += '<br>';
     html += '<span class="player-tiles>">Tiles:</span>';
     html += '</div>';
-    html += '<div class="main-path-center" disabled="false"></div>';
+    html += '<div class="main-path-center" disabled="true"></div>';
     html += '<div class="main-path-right"></div>';
 
     html2 += '<div class="main-path-left">';
-    html2 += '<input type="text" placeholder="Player ' + i +'" />';
+    html2 += '<input type="text" id="placeholder' + i +'" placeholder="Player ' + i +'" />';
     //html2 += '<span class="player-name-' + i + '">Player ' + i + '</span>';
     html2 += '<br>';
     html2 += '<span class="player-tiles>">Tiles:</span>';
     html2 += '</div>';
-    html2 += '<div class="main-path-center" disabled="false"></div>';
+    html2 += '<div class="main-path-center" disabled="true"></div>';
     html2 += '<div class="main-path-right"></div>';
     html2 += '<div class="spinner-path-left spinner" disabled="true"></div>';
     html2 += '<div class="spinner-path-center spinner" disabled="true"></div>';
@@ -119,33 +119,72 @@ DominosGame.prototype._assignTiles = function (defaultTiles, selectedPlayers){
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 DominosGame.prototype._usersTilesDisplay = function() {
-
+  for (var i=1; i<= this.selectedPlayers; i++){
+    $('<div class="user-dominos display' + i + ' hide-display"><div class="upper-row" id="upper-row-users' + i + '"></div><div class="lower-row" id="lower-row-users' + i + '"></div></div>)').appendTo('.displays');
   // Assign user's tiles to some of this empty divs
-  var htmlTileNumber = '';
-  var htmlTileNumber2 = '';
-  var indexUserTileX = NaN;
-  var indexUserTileY = NaN;
-  for( var k = 0; k < 5; k++){
-    indexUserTileX = parseInt(this.playersData[0].tiles[0][k]);
-    indexUserTileY = parseInt(this.playersData[1].tiles[0][k]);
-    htmlTileNumber += '<div class="tile users-display" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><img class="tile-left" src="images/'+ indexUserTileX +'-wb.png"><img class="tile-right" src="images/'+ indexUserTileY +'-wb.png"></div>';
-    $('#upper-row-users').html(htmlTileNumber);
-  }
-  for (var t = 5; t < 9; t++){
-    $('#upper-row-users').append('<div class="empty-tile users-display"></div>');
-  }
+    var htmlTileNumber = '';
+    var htmlTileNumber2 = '';
+    var indexUserTileX = NaN;
+    var indexUserTileY = NaN;
+    turn = 1;
+    for( var k = 0; k < 5; k++){
+      indexUserTileX = parseInt(this.playersData[i-1].tiles[0][k][0]);
+      indexUserTileY = parseInt(this.playersData[i-1].tiles[0][k][1]);
 
-  for( var u = 5; u < 10; u++){
-    indexUserTileX = parseInt(this.playersData[0].tiles[0][u]);
-    indexUserTileY = parseInt(this.playersData[1].tiles[0][u]);
-    htmlTileNumber2 += '<div class="users-display empty-tile tile" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><img class="tile-left" src="images/'+ indexUserTileX +'-wb.png"><img class="tile-right" src="images/'+ indexUserTileY +'-wb.png"></div>';
-    $('#lower-row-users').html(htmlTileNumber2);
+      if (indexUserTileX === this.numberHands && indexUserTileY === this.numberHands){
+        turn = i;
+      }
+      htmlTileNumber += '<div class="tile users-display" data-left="'+ indexUserTileX + '" data-right="' + indexUserTileY + '"><div class="full-tile"><img class="tile-left" src="images/' + indexUserTileX + '-bw.png"><img class="tile-right" src="images/' + indexUserTileY + '-bw.png"></div></div>';
+      $('#upper-row-users' + i).html(htmlTileNumber);
+    }
+
+    for (var t = 5; t < 9; t++){
+      $('#upper-row-users' + i).append('<div class="empty-tile users-display"></div>');
+    }
+
+    for( var u = 5; u < 10; u++){
+      indexUserTileX = parseInt(this.playersData[i-1].tiles[0][u][0]);  //[0] jugador //[0] array en tiles //[1] índice del elemento (oiriginalmente 10)  // [0] - x [1] - y
+      indexUserTileY = parseInt(this.playersData[i-1].tiles[0][u][1]);
+
+      if (indexUserTileX === this.numberHands && indexUserTileY === this.numberHands){
+        turn = i;
+      }
+
+      htmlTileNumber2 += '<div class="users-display empty-tile tile" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><div class="full-tile"><img class="tile-left" src="images/'+ indexUserTileX +'-bw.png"><img class="tile-right" src="images/'+ indexUserTileY +'-bw.png"></div></div>';
+      $('#lower-row-users'+i).html(htmlTileNumber2);
+    }
+    for (var e = 5; e < 9; e++){
+      $('#lower-row-users'+i).append('<div class="users-display empty-tile"></div>');
+    }
   }
-  for (var e = 5; e < 9; e++){
-    $('#lower-row-users').append('<div class="users-display empty-tile"></div>');
-  }
+  $(".display" + turn).removeClass("hide-display");
+  $("#placeholder"+turn).addClass("placeholder-turn");
+
+   $('.full-tile').attr('draggable','true').attr('ondragstart','drag(event)')
+
 
 };
+
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+// Drop and Drag
+// %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    console.log("event", event);
+}
+
+
+function drag(event) {
+  console.log("event in drag", event);
+}
+
+
+
+
 
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //  Remaining extra tiles
@@ -156,21 +195,14 @@ var emptyCell = '';
 var tileToMove = '';
 var tileToMoveEdgeX = ''; // x
 var tileToMoveEdgeY = ''; // y
-
-console.log(tileToMove);
-console.log(tileToMoveEdgeX);
-console.log(tileToMoveEdgeY);
 that = this;
 if (this.extraTiles.length !== 0){
   $('#remainingTiles').dblclick(function() {
     tileToMove = that.extraTiles.pop();
     tileToMoveEdgeX = tileToMove[0]; // x
     tileToMoveEdgeY = tileToMove[1]; // y
-    console.log(tileToMove);
-    console.log(tileToMoveEdgeX);
-    console.log(tileToMoveEdgeY);
   emptyCell = $(".empty-tile:not(:has(*))")[0];  // check the names used at the end
-  $(emptyCell).html("<img class='tile-left' src='images/" + tileToMoveEdgeX + "-wb.png'><img class='tile-right' src='images/" + tileToMoveEdgeY + "-wb.png'>");
+  $(emptyCell).html("<div class='full-tile'><img class='tile-left' src='images/" + tileToMoveEdgeX + "-bw.png'><img class='tile-right' src='images/" + tileToMoveEdgeY + "-bw.png'></div>");
 }.bind(this));
 }
 else {
@@ -211,6 +243,8 @@ var dominosGame = null;   // needs to be moved inside
 $(document).ready(function(){
 
 
+
+
   $("#newGame").on("click", function(){
     var selectedPlayers = parseInt($("#numberPlayers").val());
     var numberHands = parseInt($("#sizeGame").val());
@@ -233,5 +267,6 @@ $(document).ready(function(){
     $('.tile').remove();
     $('.empty-tile').remove();
     $('#remainingTiles').unbind("dblclick");
+    $('.displays').children().remove();
   });
 });

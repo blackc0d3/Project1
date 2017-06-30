@@ -225,7 +225,7 @@ ul {
 
 
 .tile-left{
-    width: 40%;
+     width: 45%;
      position: absolute;
      top:  50%;
      left:  50%;
@@ -233,7 +233,7 @@ ul {
    }
 
 .tile-right{
-    width: 40%;
+    width: 45%;
     position: absolute;
     top:  50%;
     left:  50%;
@@ -325,6 +325,19 @@ input[type="text"] {
 
 input, textarea{
     color: lightgrey;
+}
+
+.hide-display{
+  display:none;
+}
+
+.placeholder-turn{
+  color: blue;
+  box-shadow:2px 2px;
+}
+
+.full-tile{
+  
 }
 
 /* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */
