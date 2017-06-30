@@ -119,6 +119,7 @@ DominosGame.prototype._assignTiles = function (defaultTiles, selectedPlayers){
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 DominosGame.prototype._usersTilesDisplay = function() {
+  var counter = 0;
   for (var i=1; i<= this.selectedPlayers; i++){
     $('<div class="user-dominos display' + i + ' hide-display"><div class="upper-row" id="upper-row-users' + i + '"></div><div class="lower-row" id="lower-row-users' + i + '"></div></div>)').appendTo('.displays');
   // Assign user's tiles to some of this empty divs
@@ -128,13 +129,14 @@ DominosGame.prototype._usersTilesDisplay = function() {
     var indexUserTileY = NaN;
     turn = 1;
     for( var k = 0; k < 5; k++){
+      counter++;
       indexUserTileX = parseInt(this.playersData[i-1].tiles[0][k][0]);
       indexUserTileY = parseInt(this.playersData[i-1].tiles[0][k][1]);
 
       if (indexUserTileX === this.numberHands && indexUserTileY === this.numberHands){
         turn = i;
       }
-      htmlTileNumber += '<div class="tile users-display" data-left="'+ indexUserTileX + '" data-right="' + indexUserTileY + '"><div class="full-tile"><img class="tile-left" src="images/' + indexUserTileX + '-bw.png"><img class="tile-right" src="images/' + indexUserTileY + '-bw.png"></div></div>';
+      htmlTileNumber += '<div class="tile users-display empty-tile "><div id="'+ counter + '"class="full-tile" title="'+ indexUserTileX + ',' + indexUserTileY + '"><img class="tile-left" src="images/' + indexUserTileX + '-bw.png"><img class="tile-right" src="images/' + indexUserTileY + '-bw.png"></div></div>';
       $('#upper-row-users' + i).html(htmlTileNumber);
     }
 
@@ -143,6 +145,7 @@ DominosGame.prototype._usersTilesDisplay = function() {
     }
 
     for( var u = 5; u < 10; u++){
+      counter++;
       indexUserTileX = parseInt(this.playersData[i-1].tiles[0][u][0]);  //[0] jugador //[0] array en tiles //[1] índice del elemento (oiriginalmente 10)  // [0] - x [1] - y
       indexUserTileY = parseInt(this.playersData[i-1].tiles[0][u][1]);
 
@@ -150,7 +153,7 @@ DominosGame.prototype._usersTilesDisplay = function() {
         turn = i;
       }
 
-      htmlTileNumber2 += '<div class="users-display empty-tile tile" data-left="'+ indexUserTileX +'" data-right="'+ indexUserTileY +'"><div class="full-tile"><img class="tile-left" src="images/'+ indexUserTileX +'-bw.png"><img class="tile-right" src="images/'+ indexUserTileY +'-bw.png"></div></div>';
+      htmlTileNumber2 += '<div class="tile users-display empty-tile "><div id="'+ counter +'"  class="full-tile" title="'+ indexUserTileX + ','+ indexUserTileY + '"><img class="tile-left" src="images/' + indexUserTileX + '-bw.png"><img class="tile-right" src="images/'+ indexUserTileY +'-bw.png"></div></div>';
       $('#lower-row-users'+i).html(htmlTileNumber2);
     }
     for (var e = 5; e < 9; e++){
@@ -160,7 +163,7 @@ DominosGame.prototype._usersTilesDisplay = function() {
   $(".display" + turn).removeClass("hide-display");
   $("#placeholder"+turn).addClass("placeholder-turn");
 
-   $('.full-tile').attr('draggable','true').attr('ondragstart','drag(event)')
+   $('.full-tile').attr('draggable','true').attr('ondragstart','drag(event)');
 
 
 };
@@ -172,14 +175,53 @@ function allowDrop(event) {
     event.preventDefault();
 }
 
-function drop(event) {
-    event.preventDefault();
-    console.log("event", event);
+function dropunique(ev) {
+   ev.preventDefault();
+   var data = ev.dataTransfer.getData("text");
+   var data2 = ev.dataTransfer.getData("data");
+   var test = data2.split(',');
+   var left_check=parseInt(test[0]);
+   var right_check=parseInt(test[1]);
+   var sum = left_check + right_check;
+   console.log("sum",sum);
+   var limit=2*dominosGame.numberHands;
+   console.log(limit);
+   var tile = document.getElementById('data');
+   console.log("tile",tile);
+
+   console.log("event", data);
+
+   if (sum === (limit)){
+     console.log("hey");
+     var dragIcon = document.createElement("img");
+      dragIcon.src = "http://img3.wikia.nocookie.net/__cb20140410195936/pokemon/images/archive/e/e1/20150101093317!025Pikachu_OS_anime_4.png";
+      dragIcon.style.width = "500px";
+      var div = document.createElement('div');
+      div.appendChild(dragIcon);
+      div.style.position = "absolute"; div.style.top = "0px"; div.style.left= "-500px";
+      document.querySelector('body').appendChild(div);
+      ev.dataTransfer.setDragImage(div, 0, 0);
+
+
+
+     ev.target.appendChild(document.getElementById(data));
+   }
+
+
+
+
 }
 
 
-function drag(event) {
-  console.log("event in drag", event);
+function drag(ev) {
+
+  console.log("event in drag", ev);
+  ev.dataTransfer.setData("text", ev.target.parentNode.id);
+  ev.dataTransfer.setData("data", ev.target.parentNode.title);
+  // var img = document.createElement("img");
+  // img.src = "images/chip.png";
+  // img.style.width = "50px";
+  // event.dataTransfer.setDragImage(img, 0, 0);
 }
 
 
